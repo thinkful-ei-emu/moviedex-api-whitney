@@ -50,4 +50,4 @@ function handleGetMovie (req, res) {
 app.get('/movie', handleGetMovie);
 
 
-app.listen(process.env.port, () => console.log('Server Started 8000'));
+app.listen(process.env.port, () => console.log(`Server Started ${process.env.port}`));
