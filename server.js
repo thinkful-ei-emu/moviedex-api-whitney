@@ -1,10 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
+const helmet = require('helmet');
 const movies = require('./moviedata.json');
 
 const app = express();
 app.use(morgan('common'));
+app.use(cors());
+app.use(helmet());
 app.use(validateBearerToken);
 
 //Endpoint should have general security, CORS & Helmet?
