@@ -40,7 +40,7 @@ function handleGetMovie (req, res) {
   }
   //Searching by average vote -> whether movie's avg_vote is >= # supplied
   if(req.query.avg_vote) {
-    results = results.filter(result => result.avg_vote >= req.query.avg_vote);
+    results = results.filter(result => Number(result.avg_vote) >= Number(req.query.avg_vote));
   }
   //Api responds with array of full movie entries for search results
   return res.json(results);
