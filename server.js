@@ -14,12 +14,8 @@ app.use(validateBearerToken);
 //Endpoint should have general security, CORS & Helmet?
 function validateBearerToken(req, res, next) {
   const API_TOKEN = process.env.API_TOKEN;
-  const authVal = req.get('Authorization') || '';
-  const [ authType, token ] = authVal.split(' ');
-  if(authType.toLowerCase() !== 'bearer') {
-    return res.status(401).json({ error: 'Not authorized to make that request'});
-  }
-  if(token !== API_TOKEN) {
+  const authToken = req.get('Authorization') || '';
+  if(!authToken || authToken.split(' ')[1] !== API_TOKEN) {
     return res.status(401).json({ error: 'Not authorized to make that request'});
   }
 
@@ -50,4 +46,4 @@ function handleGetMovie (req, res) {
 app.get('/movie', handleGetMovie);
 
 
-app.listen(process.env.port, () => console.log(`Server Started ${process.env.port}`));
+app.listen(process.env.port, () => console.log(`Server listening at http://localhost:${process.env.port}`));
