@@ -1,4 +1,4 @@
-const {PORT, NODE_ENV} = require('dotenv').config();
+const {NODE_ENV} = require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -58,4 +58,4 @@ app.get('/movie', handleGetMovie);
 
 
 
-app.listen(PORT);
+app.listen(process.env.PORT);
